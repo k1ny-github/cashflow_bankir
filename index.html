@@ -1,0 +1,123 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Cashflow AI</title>
+    <link rel="manifest" href="manifest.json">
+    <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+    <meta name="apple-mobile-web-app-capable" content="yes">
+    <link rel="stylesheet" href="css/style.css">
+</head>
+<body>
+
+    <div id="modal-overlay" class="modal-overlay hidden">
+        
+        <div id="modal-profession" class="modal-content hidden">
+            <h2>Выберите профессию</h2>
+            <div id="profession-list" class="profession-grid"></div>
+        </div>
+
+        <div id="modal-transaction" class="modal-content hidden">
+            <h2>Новая операция</h2>
+            
+            <div class="tabs">
+                <button class="tab-btn active" data-tab="expense">Расход</button>
+                <button class="tab-btn" data-tab="income">Доход</button>
+                <button class="tab-btn" data-tab="asset">Актив</button>
+            </div>
+
+            <div id="form-expense" class="form-section">
+                <input type="text" id="exp-title" placeholder="На что потратили?">
+                <input type="number" id="exp-cost" placeholder="Сумма">
+                <p class="hint">Всякая всячина, штрафы, увольнение.</p>
+                <button id="btn-submit-expense" class="btn-green" style="background:#ff3b30; color:white">Оплатить (Списать)</button>
+            </div>
+
+            <div id="form-income" class="form-section hidden">
+                <input type="text" id="inc-title" placeholder="Откуда деньги?">
+                <input type="number" id="inc-amount" placeholder="Сумма">
+                <p class="hint">Продажа карточки другому игроку, наследство и т.д.</p>
+                <button id="btn-submit-income" class="btn-green">Получить (Добавить)</button>
+            </div>
+
+            <div id="form-asset" class="form-section hidden">
+                <input type="text" id="asset-title" placeholder="Название (Дом, Бизнес)">
+                <div class="row">
+                    <input type="number" id="asset-cost" placeholder="Цена">
+                    <input type="number" id="asset-down" placeholder="Взнос">
+                </div>
+                <div class="row">
+                    <input type="number" id="asset-flow" placeholder="Поток (+/-)">
+                    <input type="number" id="asset-qty" placeholder="Кол-во" value="1">
+                </div>
+                <p class="hint">Кредит = Цена - Взнос.</p>
+                <button id="btn-submit-asset" class="btn-green">Купить</button>
+            </div>
+            
+            <button id="btn-close-modal" class="btn-gray" style="margin-top:10px">Отмена</button>
+        </div>
+    </div>
+
+    <div class="app-container">
+        <header>
+            <div class="header-info">
+                <h2 id="profession-name">...</h2>
+                <div class="turn-counter">Ход: <span id="turn-count">1</span></div>
+            </div>
+            <div class="cash-display">
+                <span id="total-cash" class="money">$0</span>
+            </div>
+        </header>
+
+        <div class="controls-top">
+            <button id="btn-undo" class="btn-gray" disabled>↩</button>
+            <button id="btn-redo" class="btn-gray" disabled>↪</button>
+            <button id="btn-loan" class="btn-yellow">🏦 Кредит</button>
+            <button id="btn-child" class="btn-blue">👶 Ребенок</button>
+            <button id="btn-payday" class="btn-green">💰 ЗП</button>
+        </div>
+        
+        <button id="btn-new-op" class="btn-main-action">+ ДОБАВИТЬ ОПЕРАЦИЮ</button>
+
+        <div class="game-sheet">
+            <div class="column">
+                <div class="sheet-section income-section">
+                    <h3>Доходы</h3>
+                    <div class="sheet-row"><span>Зарплата:</span><span id="salary-val" class="val-green">$0</span></div>
+                    <div id="passive-list" class="detail-list"></div>
+                    <div class="sheet-row total-row"><span>Общий доход:</span><span id="total-income">$0</span></div>
+                </div>
+
+                <div class="sheet-section expense-section">
+                    <h3>Расходы</h3>
+                    <div id="expenses-list" class="detail-list"></div>
+                    <div class="sheet-row"><span>Дети (<span id="child-count">0</span>):</span><span id="child-expense-val">$0</span></div>
+                    <div class="sheet-row total-row"><span>Общий расход:</span><span id="total-expenses">$0</span></div>
+                </div>
+
+                <div class="sheet-section flow-section">
+                    <div class="sheet-row mega-total"><span>Денежный поток:</span><span id="cash-flow">$0</span></div>
+                </div>
+            </div>
+
+            <div class="column">
+                <div class="sheet-section">
+                    <h3>Активы</h3>
+                    <div id="assets-list" class="detail-list"></div>
+                </div>
+                
+                <div class="sheet-section">
+                    <h3>Пассивы</h3>
+                    <div id="liabilities-list" class="detail-list"></div>
+                    <div id="asset-liabilities-list" class="detail-list" style="margin-top: 10px; border-top: 1px dashed #444;"></div>
+                </div>
+            </div>
+        </div>
+
+        <div class="log-container"><ul id="action-log"></ul></div>
+    </div>
+
+    <script type="module" src="js/app.js"></script>
+</body>
+</html>

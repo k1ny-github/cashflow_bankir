@@ -1,0 +1,80 @@
+/* Основные стили остались прежними, добавляем новое */
+body { font-family: 'Segoe UI', sans-serif; background-color: #121212; color: #e0e0e0; margin: 0; padding: 10px; }
+.app-container { max-width: 800px; margin: 0 auto; background-color: #1e1e2e; padding: 15px; border-radius: 15px; }
+
+header { display: flex; justify-content: space-between; align-items: center; border-bottom: 2px solid #333; padding-bottom: 10px; margin-bottom: 15px; }
+.header-info h2 { margin: 0; font-size: 1.2em; color: #fff; }
+.turn-counter { font-size: 0.9em; color: #888; }
+.money { font-size: 1.8em; font-weight: bold; color: #4cd964; }
+
+.controls-top { display: flex; gap: 5px; margin-bottom: 10px; flex-wrap: wrap; }
+.controls-top button { padding: 10px; border-radius: 8px; border: none; font-weight: bold; cursor: pointer; flex: 1; min-width: 60px; }
+
+.btn-green { background-color: #4cd964; color: #000; }
+.btn-yellow { background-color: #ffcc00; color: #000; }
+.btn-blue { background-color: #007aff; color: #fff; }
+.btn-gray { background-color: #444; color: #fff; }
+.btn-gray:disabled { opacity: 0.3; }
+
+/* Большая кнопка добавления */
+.btn-main-action { width: 100%; padding: 15px; background: #6c5ce7; color: white; border: none; border-radius: 10px; font-weight: bold; font-size: 1.1em; cursor: pointer; margin-bottom: 20px; box-shadow: 0 4px 10px rgba(108, 92, 231, 0.4); }
+.btn-main-action:active { transform: scale(0.98); }
+
+/* Игровой бланк */
+.game-sheet { display: grid; grid-template-columns: 1fr 1fr; gap: 15px; margin-bottom: 20px; }
+@media (max-width: 600px) { .game-sheet { grid-template-columns: 1fr; } }
+
+.sheet-section { background-color: #2b2b40; padding: 10px; border-radius: 8px; margin-bottom: 10px; border: 1px solid #333; }
+.sheet-section h3 { margin: 0 0 10px 0; font-size: 0.9em; text-transform: uppercase; color: #aaa; border-bottom: 1px solid #444; padding-bottom: 5px; }
+.sheet-row { display: flex; justify-content: space-between; padding: 4px 0; font-size: 0.9em; }
+.detail-list div { display: flex; justify-content: space-between; padding: 5px 2px; font-size: 0.85em; border-bottom: 1px solid #36364d; align-items: center; }
+
+/* Кликабельность */
+.clickable-row { cursor: pointer; transition: 0.2s; }
+.clickable-row:hover { background-color: #3e3e5e; color: #fff; }
+
+.total-row { margin-top: 10px; border-top: 1px solid #555; font-weight: bold; padding-top: 5px; }
+.mega-total { font-size: 1.2em; font-weight: bold; color: #ffcc00; }
+.val-green { color: #4cd964; }
+.hint-text { font-size: 0.75em; color: #666; margin-bottom: 5px; }
+
+.log-container { margin-top: 20px; max-height: 150px; overflow-y: auto; font-size: 0.85em; border-top: 1px solid #444; padding-top: 10px; color: #888; }
+.log-container li { list-style: none; margin-bottom: 5px; border-bottom: 1px solid #333; }
+
+/* Модальное окно и Формы */
+.modal-overlay { position: fixed; top: 0; left: 0; width: 100%; height: 100%; background: rgba(0,0,0,0.95); z-index: 999; display: flex; justify-content: center; align-items: center; }
+.modal-content { background: #2b2b40; padding: 20px; border-radius: 15px; width: 90%; max-width: 500px; max-height: 90vh; overflow-y: auto; text-align: center; }
+.hidden { display: none !important; }
+
+.profession-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 10px; margin-top: 20px; }
+.btn-select { background: #36364d; border: 1px solid #555; padding: 15px; color: white; border-radius: 8px; cursor: pointer; }
+
+/* Табы в модалке */
+.tabs { display: flex; margin-bottom: 15px; background: #222; border-radius: 8px; padding: 4px; }
+.tab-btn { flex: 1; padding: 10px; background: transparent; border: none; color: #888; cursor: pointer; font-weight: bold; }
+.tab-btn.active { background: #444; color: #fff; border-radius: 6px; }
+
+.form-section input { width: 100%; padding: 12px; margin-bottom: 10px; background: #121212; border: 1px solid #444; color: white; border-radius: 6px; box-sizing: border-box; }
+.form-section .row { display: flex; gap: 10px; }
+.form-section .hint { font-size: 0.8em; color: #888; margin-bottom: 15px; text-align: left; }
+
+.asset-actions button { font-size: 0.7em; padding: 2px 6px; margin-left: 5px; border: 1px solid #555; background: #222; color: #aaa; cursor: pointer; border-radius: 4px; }
+
+/* Маленькая кнопка внутри списков */
+.btn-mini {
+    font-size: 0.75em;
+    padding: 3px 8px;
+    margin-left: 10px;
+    background-color: #4cd964; /* Зеленый - значит погасить/свобода */
+    border: none;
+    border-radius: 4px;
+    color: #000;
+    font-weight: bold;
+    cursor: pointer;
+    transition: 0.2s;
+}
+
+.btn-mini:hover {
+    background-color: #fff;
+    transform: scale(1.05);
+}
